@@ -1,0 +1,25 @@
+#############################################################
+frontend http_front
+   bind *:9898
+   stats uri /haproxy?stats
+   acl url_blog path_beg /blog
+#   use_backend blog_back if url_blog
+   default_backend http_back
+
+backend http_back
+        balance roundrobin
+        cookie JSESSIONID prefix nocache
+        
+	#salida local
+        server local 127.0.0.1:3128 check cookie s1
+
+        #salida por argetnina
+        server remote02 10.40.1.199:3128 check cookie s2
+
+        #salida por brasil 1
+        #server remote03 172.17.1.4:6588 check cookie s3
+
+        #salida por brasil 2
+        server remote044 172.17.1.9:6588 check cookie s44
+
+##############################################################

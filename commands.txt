@@ -1,0 +1,12 @@
+-- chequear syntaxis
+
+/usr/local/sbin/haproxy -c -V -f /etc/haproxy/haproxy.cfg
+
+
+-- restart service
+
+service haproxy restart
+
+or
+
+systemctl restart haproxy
